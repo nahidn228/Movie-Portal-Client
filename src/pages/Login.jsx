@@ -10,7 +10,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
-  const { loginWithGoogle, loginUser, setLoading } = useContext(AuthContext);
+  const { loginWithGoogle, loginUser, setLoading,  setEmail } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = (e) => {
@@ -18,6 +19,8 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+
+    setEmail(email);
 
     loginUser(email, password)
       .then((userCredential) => {
@@ -96,6 +99,7 @@ const Login = () => {
                 required
                 className="w-full focus:outline-none bg-transparent placeholder-gray-500"
               />
+
               <button
                 type="button"
                 onClick={handleTogglePassword}
@@ -104,6 +108,13 @@ const Login = () => {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
+            <button
+              type="button"
+              onClick={() => navigate("/forgotPassword")}
+              className="text-sm text-yellow-400 mt-2 hover:underline focus:outline-none"
+            >
+              Forgot Password?
+            </button>
           </div>
 
           {/* Submit Button */}

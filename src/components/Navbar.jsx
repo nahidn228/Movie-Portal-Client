@@ -113,13 +113,13 @@ const Navbar = () => {
           <>
             <NavLink
               to="/login"
-              className="btn btn-sm bg-yellow-400 text-black hover:bg-yellow-500 hover:text-white transition duration-300"
+              className="btn btn-sm bg-gradient-to-r from-yellow-500 to-orange-600 text-white hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105 border-none"
             >
               Login
             </NavLink>
             <NavLink
               to="/register"
-              className="btn btn-sm bg-green-400 text-black hover:bg-green-500 hover:text-white transition duration-300"
+              className="btn btn-sm bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 border-none"
             >
               Register
             </NavLink>
@@ -150,7 +150,7 @@ const Navbar = () => {
 
             <button
               onClick={handleSignOut}
-              className="btn btn-sm bg-red-500 text-white hover:bg-red-600 transition duration-300"
+              className="btn btn-sm bg-gradient-to-r from-red-500 to-orange-600 text-white hover:bg-red-400 transition-all duration-300 transform hover:scale-105 border-none"
             >
               Logout
             </button>
