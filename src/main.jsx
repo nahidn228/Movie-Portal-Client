@@ -7,6 +7,7 @@ import "./index.css";
 import AuthProvider from "./provider/AuthProvider";
 import router from "./router/Router";
 
+
 // Initialize AOS
 AOS.init();
 

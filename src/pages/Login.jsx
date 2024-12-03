@@ -10,7 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
-  const { loginWithGoogle, loginUser } = useContext(AuthContext);
+  const { loginWithGoogle, loginUser, setLoading } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = (e) => {
@@ -28,6 +28,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
+        setLoading(false);
       });
   };
 
@@ -46,6 +47,7 @@ const Login = () => {
         // Handle Errors here.
         const errorCode = error.code;
         console.log(errorCode);
+        setLoading(false);
       });
   };
   return (

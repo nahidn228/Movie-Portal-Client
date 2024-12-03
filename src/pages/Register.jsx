@@ -9,11 +9,12 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { createUser, loginWithGoogle, updateUser, setUser } =
+  const { createUser, loginWithGoogle, updateUser, setUser, setLoading } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePassword = () => {
@@ -37,6 +38,25 @@ const Register = () => {
 
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+
+            Swal.fire({
+              title: `${user?.displayName} Your account created successfully`,
+              showClass: {
+                popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `,
+              },
+              hideClass: {
+                popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `,
+              },
+            });
             navigate("/");
             //clear form
             e.target.reset();
@@ -53,7 +73,7 @@ const Register = () => {
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
-        // ..
+        setLoading(false);
       });
   };
 
@@ -64,11 +84,30 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         navigate(location?.state ? location.state : "/");
+
+        Swal.fire({
+          title: `${user?.displayName} Your account created successfully`,
+          showClass: {
+            popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `,
+          },
+          hideClass: {
+            popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `,
+          },
+        });
       })
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         console.log(errorCode);
+        setLoading(false);
       });
   };
 
