@@ -129,7 +129,7 @@ const Navbar = () => {
             {user && user?.photoURL ? (
               <div className="relative inline-block group">
                 {/* User img */}
-                {/* <p>{user?.email}</p> */}
+
                 <img
                   className="w-10 h-10 rounded-full object-cover"
                   src={user?.photoURL}
