@@ -1,7 +1,21 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import navImg from "../assets/user.png";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
-  const isAuthenticated = false; // Replace with actual auth state logic
+  const { user, signOutUser } = useContext(AuthContext);
+  console.log(user);
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        console.log("sign out success");
+      })
+      .catch(() => {
+        // An error happened.
+      });
+  };
 
   const navLinks = (
     <>
@@ -95,7 +109,7 @@ const Navbar = () => {
 
       {/* Navbar End */}
       <div className="navbar-end space-x-3">
-        {!isAuthenticated ? (
+        {!user ? (
           <>
             <NavLink
               to="/login"
@@ -111,9 +125,36 @@ const Navbar = () => {
             </NavLink>
           </>
         ) : (
-          <button className="btn btn-sm bg-red-500 text-white hover:bg-red-600 transition duration-300">
-            Logout
-          </button>
+          <div className="flex gap-4">
+            {user && user?.photoURL ? (
+              <div className="relative inline-block group">
+                {/* User img */}
+                {/* <p>{user?.email}</p> */}
+                <img
+                  className="w-10 h-10 rounded-full object-cover"
+                  src={user?.photoURL}
+                  alt=""
+                />
+                {/* hover user name */}
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full bg-gray-800 text-white text-sm px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                  {user.displayName}
+                </span>
+              </div>
+            ) : (
+              <div className="relative inline-block group">
+                {/* default image */}
+                <img className="rounded-full" src={navImg} alt="" />
+                {/* hover user name */}
+              </div>
+            )}
+
+            <button
+              onClick={handleSignOut}
+              className="btn btn-sm bg-red-500 text-white hover:bg-red-600 transition duration-300"
+            >
+              Logout
+            </button>
+          </div>
         )}
       </div>
     </div>

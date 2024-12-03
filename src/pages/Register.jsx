@@ -13,7 +13,8 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
   const navigate = useNavigate();
-  const { createUser, loginWithGoogle } = useContext(AuthContext);
+  const { createUser, loginWithGoogle, updateUser, setUser } =
+    useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
@@ -29,9 +30,20 @@ const Register = () => {
     console.log(name, photo, email, password);
     createUser(email, password)
       .then((userCredential) => {
+        setUser(userCredential.user);
         const user = userCredential.user;
         const createdAt = user?.metadata?.creationTime;
         console.log(user, createdAt);
+
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            navigate("/");
+            //clear form
+            e.target.reset();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
 
         //clear form
         e.target.reset();
@@ -48,6 +60,7 @@ const Register = () => {
   const handleGoogleRegister = () => {
     loginWithGoogle()
       .then((result) => {
+        setUser(result.user);
         const user = result.user;
         console.log(user);
         navigate(location?.state ? location.state : "/");

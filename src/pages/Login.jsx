@@ -6,16 +6,29 @@ import {
   FaGoogle,
   FaLock,
 } from "react-icons/fa";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
-  const { loginWithGoogle } = useContext(AuthContext);
+  const { loginWithGoogle, loginUser } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    // Handle sign-in logic here
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUser(email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+      });
   };
 
   const handleTogglePassword = () => {
