@@ -7,10 +7,11 @@ import {
   FaLock,
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
-  const { loginWithGoogle, loginUser, setLoading,  setEmail } =
+  const { loginWithGoogle, loginUser, setLoading, setEmail } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,11 +28,21 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        Swal.fire({
+          title: `Successfully Logged-in`,
+          text: `${user?.displayName} You are successfully Logged-in`,
+          icon: "success",
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
         setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorCode}`,
+        });
       });
   };
 
@@ -44,6 +55,11 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          title: `Successfully Logged-in`,
+          text: `${user?.displayName} You are successfully Logged-in`,
+          icon: "success",
+        });
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -51,6 +67,11 @@ const Login = () => {
         const errorCode = error.code;
         console.log(errorCode);
         setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorCode}`,
+        });
       });
   };
   return (

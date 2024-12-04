@@ -1,3 +1,4 @@
+import "animate.css";
 import { useContext, useState } from "react";
 import {
   FaCamera,
@@ -56,21 +57,9 @@ const Register = () => {
             setUser({ ...user, displayName: name, photoURL: photo });
 
             Swal.fire({
-              title: `${user?.displayName} Your account created successfully`,
-              showClass: {
-                popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                      `,
-              },
-              hideClass: {
-                popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                      `,
-              },
+              title: `Successfully Signed-up`,
+              text: `${user?.displayName} Your account created successfully`,
+              icon: "success",
             });
             navigate("/");
             //clear form
@@ -89,40 +78,38 @@ const Register = () => {
         const errorCode = error.code;
         console.log(errorCode);
         setLoading(false);
+
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorCode}`,
+        });
       });
   };
 
   const handleGoogleRegister = () => {
     loginWithGoogle()
       .then((result) => {
+        Swal.fire({
+          title: `Successfully Signed-up`,
+          text: `${user?.displayName} Your account created successfully`,
+          icon: "success",
+        });
         setUser(result.user);
         const user = result.user;
         console.log(user);
         navigate(location?.state ? location.state : "/");
-
-        Swal.fire({
-          title: `${user?.displayName} Your account created successfully`,
-          showClass: {
-            popup: `
-                animate__animated
-                animate__fadeInUp
-                animate__faster
-              `,
-          },
-          hideClass: {
-            popup: `
-                animate__animated
-                animate__fadeOutDown
-                animate__faster
-              `,
-          },
-        });
       })
       .catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
         console.log(errorCode);
         setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorCode}`,
+        });
       });
   };
 

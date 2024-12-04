@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const ForgotPassword = () => {
@@ -11,13 +12,30 @@ const ForgotPassword = () => {
     e.preventDefault();
     const email = e.target.email.value;
     resetPassword(email)
-      .then(() => {
+      .then((result) => {
+        console.log(result);
+        navigate("/login");
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Password reset link sent to your email",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
         //clear form
         e.target.reset();
       })
+
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${errorCode}`,
+        });
       });
   };
 
