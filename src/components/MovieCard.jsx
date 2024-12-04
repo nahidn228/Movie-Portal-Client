@@ -4,7 +4,7 @@ const MovieCard = ({ movie }) => {
   const { poster, title, genre, duration, releaseYear, rating } = movie;
 
   return (
-    <div className="max-w-xs bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative ">
+    <div className=" bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative ">
       {/* Label for the tag */}
       <div className="absolute top-2 left-2 bg-red-600 text-xs font-semibold uppercase text-white px-2 py-1 rounded">
         Dual Audio (WEB-DL)

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import FeaturedMovies from "../components/FeaturedMovies";
 import UpcomingMovie from "../components/UpcomingMovie";
 import MainLayout from "../layout/MainLayout";
 import AddMovies from "../pages/AddMovies";
@@ -22,7 +23,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <UpcomingMovie></UpcomingMovie>,
-        loader: () => fetch("http://localhost:5000/UpcomingMovie"),
+        
+      },
+      {
+        path: "/",
+        element: <FeaturedMovies></FeaturedMovies>,
+        loader: () => fetch("http://localhost:5000/featuredMovies"),
       },
       {
         path: "/all-movies",

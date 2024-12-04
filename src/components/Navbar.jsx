@@ -70,7 +70,7 @@ const Navbar = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost text-white lg:hidden"
+            className="btn btn-ghost text-white lg:hidden p-1 "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -89,14 +89,14 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-white text-black rounded-box mt-3 w-52 p-2 shadow-lg"
+            className="menu menu-sm dropdown-content bg-white text-black rounded-box mt-3 w-52 p-2 shadow-lg z-50"
           >
             {navLinks}
           </ul>
         </div>
         <NavLink
           to="/"
-          className="btn btn-ghost normal-case text-2xl font-extrabold text-white hover:text-yellow-300"
+          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-ghost normal-case text-lg md:text-2xl font-extrabold text-white hover:text-yellow-300"
         >
           MOVIE PORTAL
         </NavLink>

@@ -4,7 +4,7 @@ import "swiper/swiper-bundle.css";
 
 const Banner = () => {
   return (
-    <div className="swiper-container py-10">
+    <div className="swiper-container py-10 ">
       <Swiper
         spaceBetween={50}
         centeredSlides={true}
