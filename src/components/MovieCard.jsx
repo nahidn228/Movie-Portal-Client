@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+
 
 const MovieCard = ({ movie }) => {
   const { poster, title, genre, duration, releaseYear, rating } = movie;

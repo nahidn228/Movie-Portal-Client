@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 const AddMovies = () => {
-  const [formData, setFormData] = useState();
-
   const genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"];
 
   const handleSubmit = (e) => {
