@@ -29,6 +29,18 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, photo, email, password);
+
+    //Password Validation
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
+
+    if (!passwordRegex.test(password)) {
+      alert(
+        "Your password should contain, Uppercase Lowercase and Length must be at least 6 character "
+      );
+      return;
+    }
+
     createUser(email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
