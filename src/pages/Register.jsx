@@ -35,9 +35,12 @@ const Register = () => {
     const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
 
     if (!passwordRegex.test(password)) {
-      alert(
-        "Your password should contain, Uppercase Lowercase and Length must be at least 6 character "
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Your password should contain, at least one Uppercase & Lowercase, one number and Length must be at least 6 character ",
+      });
+
       return;
     }
 
