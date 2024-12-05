@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+svg.star-svg{
+    display: inline;
+}
+
+
+.dark .bg-white {
+    background-color: #1a202c; /* Dark background */
+  }
+  .dark .text-black {
+    color: white; /* Light text for dark mode */
+  }
+  

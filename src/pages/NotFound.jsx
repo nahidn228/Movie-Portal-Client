@@ -23,7 +23,7 @@ const NotFound = () => {
           404
         </h1>
         <p className="text-lg mt-4 animate__animated animate__fadeIn animate__delay-2s">
-          The page you're looking for doesn't exist. But don't worry, you can go
+          The page you are looking for does not exist. But do not worry, you can go
           back to the home page.
         </p>
 

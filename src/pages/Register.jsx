@@ -1,5 +1,7 @@
 import "animate.css";
-import { useContext, useLocation, useState } from "react";
+import { useContext, useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import {
   FaCamera,
   FaEnvelope,
@@ -14,8 +16,8 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
-  const navigate = useNavigate();
   const location = useLocation();
+  const navigate = useNavigate();
   const { createUser, loginWithGoogle, updateUser, setUser, setLoading } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
@@ -56,7 +58,6 @@ const Register = () => {
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
-            
 
             Swal.fire({
               title: `Successfully Signed-up`,
