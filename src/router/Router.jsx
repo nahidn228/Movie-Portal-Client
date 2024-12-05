@@ -12,6 +12,7 @@ import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 import TopRated from "../pages/TopRated";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: "/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
       {
         path: "/all-movies/:id",
