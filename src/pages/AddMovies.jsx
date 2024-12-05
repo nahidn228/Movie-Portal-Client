@@ -1,16 +1,68 @@
+import { useState } from "react";
+import { Rating } from "react-simple-star-rating";
+
 const AddMovies = () => {
   const genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"];
+  const year = [
+    2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2017, 2016, 2015, 2014,
+    2013, 2012, 2011, 2010,
+  ];
+  const [posterError, setPosterError] = useState("");
+  const [titleError, setTitleError] = useState("");
+  const [rating, setRating] = useState(0);
+  const [ratingError, setRatingError] = useState("");
+
+  // Handle Rating Change
+  const handleRatingChange = (newRating) => {
+    setRating(newRating / 10);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const poster = form.poster.value;
-    const title = form.title.value;
+    const title = form.title.value.trim();
     const genre = form.genre.value;
-    const duration = form.duration.value;
-    const releaseYear = form.releaseYear.value;
-    const rating = form.rating.value;
+    const duration = parseInt(form.duration.value);
+    const releaseYear = parseInt(form.releaseYear.value);
     const summary = form.summary.value;
+
+    // Validate Poster URL
+    try {
+      new URL(poster);
+      setPosterError("");
+    } catch {
+      setPosterError("Please enter a valid URL.");
+      return;
+    }
+
+    // Validate Title
+    if (!title || title.length < 2) {
+      setTitleError(
+        "Movie Title must not be empty and should have at least 2 characters."
+      );
+      return;
+    } else {
+      setTitleError("");
+    }
+
+    // Validate Rating
+    if (rating === 0) {
+      setRatingError("Please select a rating.");
+      return;
+    } else {
+      setRatingError("");
+    }
+
+     // Validate Title
+     if (!summary || summary.length < 10) {
+      setTitleError(
+        "Movie summary must not be empty and should have at least 10 characters."
+      );
+      return;
+    } else {
+      setTitleError("");
+    }
 
     const movieData = {
       poster,
@@ -57,6 +109,9 @@ const AddMovies = () => {
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
             />
+            {posterError && (
+              <p className="text-red-500 text-sm mt-1">{posterError}</p>
+            )}
           </div>
 
           {/* Movie Title */}
@@ -72,6 +127,9 @@ const AddMovies = () => {
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
             />
+            {titleError && (
+              <p className="text-red-500 text-sm mt-1">{titleError}</p>
+            )}
           </div>
 
           {/* Genre */}
@@ -116,32 +174,41 @@ const AddMovies = () => {
             <label className="block text-sm font-medium text-gray-700">
               Release Year
             </label>
-            <input
+            <select
               type="number"
               id="releaseYear"
               name="releaseYear"
               placeholder="Enter release year"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
-            />
+            >
+              {year.map((year, index) => (
+                <option key={index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Rating */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Rating
+              Rating (1-10)
             </label>
-            <input
-              type="number"
-              id="rating"
-              name="rating"
-              placeholder="Enter rating (0-10)"
-              required
-              min="0"
-              max="10"
-              step="0.1"
-              className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
-            />
+            <div>
+              <Rating
+                onClick={handleRatingChange}
+                ratingValue={rating * 10}
+                size={30}
+                transition
+                fillColor="gold"
+                emptyColor="gray"
+                className="flex flex-row"
+              />
+            </div>
+            {ratingError && (
+              <p className="text-red-500 text-sm mt-1">{ratingError}</p>
+            )}
           </div>
 
           {/* Summary */}
@@ -156,6 +223,9 @@ const AddMovies = () => {
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
             ></textarea>
+            {titleError && (
+              <p className="text-red-500 text-sm mt-1">{titleError}</p>
+            )}
           </div>
 
           {/* Submit Button */}

@@ -52,14 +52,16 @@ const CardDetails = () => {
           </span>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-          {genre.map((g, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-purple-600 rounded-full text-xs"
-            >
-              {g}
-            </span>
-          ))}
+          {Array.isArray(genre)
+            ? genre.map((g, index) => (
+                <span
+                  key={index}
+                  className="px-3 py-1 bg-purple-600 rounded-full text-xs"
+                >
+                  {g}
+                </span>
+              ))
+            : <span className="px-3 py-1 bg-purple-600 rounded-full text-xs">{genre}</span> }
         </div>
         <p className="text-lg mb-4">{summary}</p>
         <div className="flex items-center gap-2">
