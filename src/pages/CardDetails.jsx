@@ -1,16 +1,21 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loader from "../components/Loader";
+import { AuthContext } from "../provider/AuthProvider";
 
 const CardDetails = () => {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const data = useLoaderData();
   const [movie, setMovie] = useState(null);
+  // const [favorite, setFavorite] = useState([]);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,10 +25,26 @@ const CardDetails = () => {
   useEffect(() => {
     const singleData = data.find((item) => item._id === id);
     setMovie(singleData);
+    // if (favorite._id == id) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "This movie is already listed as favorite",
+    //   });
+    // }
   }, [data, id]);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/favorite-movies")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setFavorite(data);
+  //     });
+  // }, []);
+
   // Check if the movie is loaded
-  if (!movie) return <p>Loading...</p>;
+  if (!movie) return <Loader></Loader>;
 
   const { _id, poster, title, genre, duration, releaseYear, rating, summary } =
     movie;
@@ -55,16 +76,36 @@ const CardDetails = () => {
 
   const handleAddToFavorites = (id) => {
     console.log(`Adding movie with id: ${id} to favorites`);
+
+    // if (favorite.map((item) => item._id == id)) {
+    //   Swal.fire({
+    //     icon: "error",
+    //     title: "Oops...",
+    //     text: "This movie is already listed as a favorite!",
+    //   });
+    //   return;
+    // }
+
+    const userEmail = user.email;
+    console.log(userEmail);
+    const movieWithUserEmail = { ...movie, userEmail: userEmail };
+
     fetch("http://localhost:5000/favorite-movies", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(movie),
+      body: JSON.stringify(movieWithUserEmail),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        Swal.fire(
+          "Added!",
+          "Your Movie has been Added to Favorite list.",
+          "success"
+        );
+        navigate("/all-movies");
       });
   };
 

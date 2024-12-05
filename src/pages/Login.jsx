@@ -6,14 +6,17 @@ import {
   FaGoogle,
   FaLock,
 } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { loginWithGoogle, loginUser, setLoading, setEmail } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const { pathname } = useLocation();
+  console.log(pathname);
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -28,6 +31,9 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        //clear form
+        e.target.reset();
+
         navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: `Successfully Logged-in`,
