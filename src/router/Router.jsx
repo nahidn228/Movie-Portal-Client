@@ -4,13 +4,13 @@ import UpcomingMovie from "../components/UpcomingMovie";
 import MainLayout from "../layout/MainLayout";
 import AddMovies from "../pages/AddMovies";
 import AllMovies from "../pages/AllMovies";
+import CardDetails from "../pages/CardDetails";
 import ForgotPassword from "../pages/ForgotPassword";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 import TopRated from "../pages/TopRated";
-import CardDetails from "../pages/CardDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <UpcomingMovie></UpcomingMovie>,
-        
       },
       {
         path: "/",
         element: <FeaturedMovies></FeaturedMovies>,
-        
       },
       {
         path: "/all-movies",
@@ -43,6 +41,7 @@ const router = createBrowserRouter([
       {
         path: "/favorites",
         element: <MyFavorite></MyFavorite>,
+        loader: () => fetch("http://localhost:5000/favorite-movies"),
       },
       {
         path: "/top-rated",

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Swal from "sweetalert2";
 
 const AddMovies = () => {
   const genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"];
@@ -32,15 +33,21 @@ const AddMovies = () => {
       new URL(poster);
       setPosterError("");
     } catch {
-      setPosterError("Please enter a valid URL.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter a valid URL.!",
+      });
       return;
     }
 
     // Validate Title
     if (!title || title.length < 2) {
-      setTitleError(
-        "Movie Title must not be empty and should have at least 2 characters."
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Movie Title must not be empty and should have at least 2 characters.",
+      });
       return;
     } else {
       setTitleError("");
@@ -48,17 +55,23 @@ const AddMovies = () => {
 
     // Validate Rating
     if (rating === 0) {
-      setRatingError("Please select a rating.");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please select a rating.",
+      });
       return;
     } else {
       setRatingError("");
     }
 
-     // Validate Title
-     if (!summary || summary.length < 10) {
-      setTitleError(
-        "Movie summary must not be empty and should have at least 10 characters."
-      );
+    // Validate Title
+    if (!summary || summary.length < 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Movie summary must not be empty and should have at least 10 characters.",
+      });
       return;
     } else {
       setTitleError("");

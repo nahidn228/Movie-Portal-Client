@@ -4,19 +4,19 @@ import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CardDetails = () => {
-  const { id } = useParams(); // Extract the dynamic ID from URL
-  const data = useLoaderData(); // Load the movie data passed via React Router
+  const { id } = useParams();
+  const data = useLoaderData();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
 
-  // Initialize AOS animations
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  // Find the movie details based on the ID
   useEffect(() => {
     const singleData = data.find((item) => item._id === id);
     setMovie(singleData);
@@ -25,8 +25,48 @@ const CardDetails = () => {
   // Check if the movie is loaded
   if (!movie) return <p>Loading...</p>;
 
-  const { poster, title, genre, duration, releaseYear, rating, summary } =
+  const { _id, poster, title, genre, duration, releaseYear, rating, summary } =
     movie;
+
+  const handleDeleteMovie = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this Movie!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/movies/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire("Deleted!", "Your Movie has been deleted.", "success");
+              navigate("/all-movies");
+            }
+          });
+      }
+    });
+  };
+
+  const handleAddToFavorites = (id) => {
+    console.log(`Adding movie with id: ${id} to favorites`);
+    fetch("http://localhost:5000/favorite-movies", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center px-5 py-10">
@@ -52,21 +92,41 @@ const CardDetails = () => {
           </span>
         </div>
         <div className="flex flex-wrap gap-2 mb-4">
-          {Array.isArray(genre)
-            ? genre.map((g, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-purple-600 rounded-full text-xs"
-                >
-                  {g}
-                </span>
-              ))
-            : <span className="px-3 py-1 bg-purple-600 rounded-full text-xs">{genre}</span> }
+          {Array.isArray(genre) ? (
+            genre.map((g, index) => (
+              <span
+                key={index}
+                className="px-3 py-1 bg-purple-600 rounded-full text-xs"
+              >
+                {g}
+              </span>
+            ))
+          ) : (
+            <span className="px-3 py-1 bg-purple-600 rounded-full text-xs">
+              {genre}
+            </span>
+          )}
         </div>
         <p className="text-lg mb-4">{summary}</p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-6">
           <FaStar className="text-yellow-500 text-xl" />
           <span className="text-xl font-semibold">{rating}</span>
+        </div>
+
+        {/* Buttons Section */}
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={() => handleDeleteMovie(_id)}
+            className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
+          >
+            Delete Movie
+          </button>
+          <button
+            onClick={() => handleAddToFavorites(_id)}
+            className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition"
+          >
+            Add to Favorite
+          </button>
         </div>
       </div>
     </div>
