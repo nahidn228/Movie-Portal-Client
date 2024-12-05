@@ -11,6 +11,7 @@ import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 import TopRated from "../pages/TopRated";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -36,11 +37,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-movie",
-        element: <AddMovies></AddMovies>,
+        element: (
+          <PrivateRoute>
+            <AddMovies></AddMovies>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/favorites",
-        element: <MyFavorite></MyFavorite>,
+        element: (
+          <PrivateRoute>
+            <MyFavorite></MyFavorite>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/favorite-movies"),
       },
       {
@@ -61,7 +70,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/all-movies/:id",
-        element: <CardDetails></CardDetails>,
+        element: (
+          <PrivateRoute>
+            <CardDetails></CardDetails>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/movies"),
       },
     ],

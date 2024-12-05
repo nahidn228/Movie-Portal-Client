@@ -61,7 +61,7 @@ const Register = () => {
               text: `${user?.displayName} Your account created successfully`,
               icon: "success",
             });
-            navigate("/");
+            navigate(location?.state ? location.state : "/");
             //clear form
             e.target.reset();
           })
@@ -95,9 +95,9 @@ const Register = () => {
           text: `${user?.displayName} Your account created successfully`,
           icon: "success",
         });
-        setUser(result.user);
         const user = result.user;
         console.log(user);
+        setUser(result.user);
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {

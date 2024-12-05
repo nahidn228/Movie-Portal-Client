@@ -28,6 +28,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: `Successfully Logged-in`,
           text: `${user?.displayName} You are successfully Logged-in`,
@@ -55,12 +56,12 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: `Successfully Logged-in`,
           text: `${user?.displayName} You are successfully Logged-in`,
           icon: "success",
         });
-        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         // Handle Errors here.
