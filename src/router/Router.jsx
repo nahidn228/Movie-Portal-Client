@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 import TopRated from "../pages/TopRated";
+import CardDetails from "../pages/CardDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <FeaturedMovies></FeaturedMovies>,
-        loader: () => fetch("http://localhost:5000/featuredMovies"),
+        
       },
       {
         path: "/all-movies",
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
       {
         path: "/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
+      },
+      {
+        path: "/all-movies/:id",
+        element: <CardDetails></CardDetails>,
+        loader: () => fetch("http://localhost:5000/movies"),
       },
     ],
   },

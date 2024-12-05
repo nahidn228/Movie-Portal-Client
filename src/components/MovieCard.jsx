@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
-  const { poster, title, genre, duration, releaseYear, rating } = movie;
+  const { _id, poster, title, genre, duration, releaseYear, rating } = movie;
 
   return (
     <div className=" bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative ">
@@ -42,9 +43,11 @@ const MovieCard = ({ movie }) => {
 
         <div>
           {/* Button */}
-          <button className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all">
-            See Details
-          </button>
+          <Link to={`/all-movies/${_id}`}>
+            <button className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all">
+              See Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

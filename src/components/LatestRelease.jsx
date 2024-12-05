@@ -17,11 +17,11 @@ const LatestRelease = () => {
       {movies.map((movie) => (
         <div
           key={movie._id}
-          className="max-w-xs bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative m-4 flex gap-6"
+          className="max-w-xs bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative m-4 "
         >
           {/* Label for the tag */}
           <div className="absolute top-2 left-2 bg-red-600 text-xs font-semibold uppercase text-white px-2 py-1 rounded">
-            Latest Release
+            Latest Release (WEB-DL)
           </div>
 
           {/* Movie Poster */}

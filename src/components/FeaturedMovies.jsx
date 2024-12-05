@@ -71,9 +71,11 @@ const FeaturedMovies = () => {
 
               <div>
                 {/* Button */}
+                <Link to={`/all-movies/${movie._id}`}>
                 <button className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all">
                   See Details
                 </button>
+                </Link>
               </div>
             </div>
           </div>
