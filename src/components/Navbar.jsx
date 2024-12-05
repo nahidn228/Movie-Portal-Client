@@ -71,10 +71,10 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/top-rated"
+          to="/blog"
           className="hover:text-accent font-semibold transition duration-300"
         >
-          Top Rated
+          Blogs
         </NavLink>
       </li>
     </>

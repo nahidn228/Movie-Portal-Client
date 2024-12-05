@@ -10,9 +10,10 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
-import TopRated from "../pages/TopRated";
+
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import NotFound from "../pages/NotFound";
+import Blog from "../pages/Blog";
 
 const router = createBrowserRouter([
   {
@@ -54,8 +55,8 @@ const router = createBrowserRouter([
         loader: () => fetch("http://localhost:5000/favorite-movies"),
       },
       {
-        path: "/top-rated",
-        element: <TopRated></TopRated>,
+        path: "/blog",
+        element: <Blog></Blog>,
       },
       {
         path: "/login",
