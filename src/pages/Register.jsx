@@ -118,7 +118,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
-      <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
+      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Register to Movie Portal
         </h2>
@@ -127,7 +127,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-black"
             >
               Full Name
             </label>
@@ -148,7 +148,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-black"
             >
               Email Address
             </label>
@@ -169,7 +169,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="photoURL"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-black"
             >
               Photo URL
             </label>
@@ -190,7 +190,7 @@ const Register = () => {
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-black"
             >
               Password
             </label>
@@ -232,7 +232,7 @@ const Register = () => {
           <FaGoogle className="m-0 p-0" />
         </button>
 
-        <p className="text-center text-gray-500 mt-4">
+        <p className="text-center text-black mt-4">
           Already have an account?{" "}
           <Link
             to="/login"

@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import FeaturedMovies from "../components/FeaturedMovies";
+import ReactForm from "../components/ReactForm";
 import UpcomingMovie from "../components/UpcomingMovie";
 import MainLayout from "../layout/MainLayout";
 import AddMovies from "../pages/AddMovies";
@@ -7,14 +8,13 @@ import AllMovies from "../pages/AllMovies";
 import CardDetails from "../pages/CardDetails";
 import ForgotPassword from "../pages/ForgotPassword";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 
 import Blog from "../pages/Blog";
 import NotFound from "../pages/NotFound";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import UpdateMovie from "../pages/UpdateMovie";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/update-movie",
-        element:  (
+        element: (
           <PrivateRoute>
             <UpdateMovie></UpdateMovie>
           </PrivateRoute>
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>,
+        element: <ReactForm></ReactForm>,
       },
       {
         path: "/register",

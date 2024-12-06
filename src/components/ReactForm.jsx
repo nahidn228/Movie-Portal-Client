@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
 import {
   FaEnvelope,
   FaEye,
@@ -9,46 +10,71 @@ import {
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { loginWithGoogle, loginUser, setLoading, setEmail } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
-  const { pathname } = useLocation();
-  console.log(pathname);
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const { email, password } = data;
 
     setEmail(email);
 
     loginUser(email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         console.log(user);
-        //clear form
-        e.target.reset();
 
-        navigate(location?.state ? location.state : "/");
+        reset(); // Clear the form
+
+        navigate(location?.state?.from || "/");
         Swal.fire({
-          title: `Successfully Logged-in`,
-          text: `${user?.displayName} You are successfully Logged-in`,
+          title: "Successfully Logged-in",
+          text: `${user?.displayName || "User"} successfully logged in!`,
           icon: "success",
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
+        console.error(error.code);
         setLoading(false);
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: `${errorCode}`,
+          text: `${error.message}`,
+        });
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        navigate(location?.state?.from || "/");
+        Swal.fire({
+          title: "Successfully Logged-in",
+          text: `${user?.displayName || "User"} successfully logged in!`,
+          icon: "success",
+        });
+      })
+      .catch((error) => {
+        console.error(error.code);
+        setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
         });
       });
   };
@@ -57,38 +83,13 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleGoogleLogin = () => {
-    loginWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        navigate(location?.state ? location.state : "/");
-        Swal.fire({
-          title: `Successfully Logged-in`,
-          text: `${user?.displayName} You are successfully Logged-in`,
-          icon: "success",
-        });
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        console.log(errorCode);
-        setLoading(false);
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${errorCode}`,
-        });
-      });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
       <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Sign In to Movie Portal
         </h2>
-        <form onSubmit={handleSignIn} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Email Field */}
           <div>
             <label
@@ -101,13 +102,23 @@ const Login = () => {
               <FaEnvelope className="text-gray-500 mr-3" />
               <input
                 type="email"
-                name="email"
                 id="email"
                 placeholder="Enter your email"
-                required
                 className="w-full focus:outline-none bg-transparent placeholder-gray-500"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\S+@\S+\.\S+$/,
+                    message: "Invalid email address",
+                  },
+                })}
               />
             </div>
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password Field */}
@@ -123,12 +134,16 @@ const Login = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"
-                name="password"
                 placeholder="Enter your password"
-                required
                 className="w-full focus:outline-none bg-transparent placeholder-gray-500"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
               />
-
               <button
                 type="button"
                 onClick={handleTogglePassword}
@@ -137,6 +152,11 @@ const Login = () => {
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
             <button
               type="button"
               onClick={() => navigate("/forgotPassword")}
@@ -154,6 +174,8 @@ const Login = () => {
             Sign In
           </button>
         </form>
+
+        {/* Google Login */}
         <button
           type="button"
           onClick={handleGoogleLogin}
@@ -163,7 +185,7 @@ const Login = () => {
           <FaGoogle className="m-0 p-0" />
         </button>
 
-        <p className="text-center text-gray-500 mt-4">
+        <p className="text-center text-black mt-4">
           Do not have an account?{" "}
           <Link
             to="/register"

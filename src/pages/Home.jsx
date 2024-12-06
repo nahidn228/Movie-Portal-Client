@@ -3,6 +3,7 @@ import Marquee from "react-fast-marquee";
 import Banner from "../components/Banner";
 import FeaturedMovies from "../components/FeaturedMovies";
 import LatestRelease from "../components/LatestRelease";
+
 import UpcomingMovie from "../components/UpcomingMovie";
 const Home = () => {
   const [data, setData] = useState([]);
@@ -79,6 +80,10 @@ const Home = () => {
             </Marquee>
           </section>
         </section>
+
+        {/* <section className="my-10">
+          <ReactForm></ReactForm>
+        </section> */}
       </main>
     </div>
   );
