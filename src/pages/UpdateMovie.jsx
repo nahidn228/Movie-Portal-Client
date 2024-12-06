@@ -93,7 +93,7 @@ const UpdateMovie = () => {
 
     console.log(updateMovieData);
 
-    fetch(`http://localhost:5000/movies/${updateMovie._id}`, {
+    fetch(`https://full-stack-go.vercel.app/movies/${updateMovie._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

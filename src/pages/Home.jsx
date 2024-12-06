@@ -26,7 +26,7 @@ const Home = () => {
           <div className="flex my-4">
             <div className="divider divider-horizontal md:p-2 bg-red-600"></div>
             <h1
-              className="text-xl md:text-4xl font-extrabold text-center text-gray-900 my-6"
+              className="text-xl md:text-4xl font-extrabold text-center text-black my-6"
               data-aos="fade-up"
             >
               Upcoming Movies
@@ -49,7 +49,7 @@ const Home = () => {
           <div className="flex my-4">
             <div className="divider divider-horizontal p-2 bg-red-600"></div>
             <h1
-              className=" text-xl md:text-4xl font-extrabold text-center text-gray-900 my-6"
+              className=" text-xl md:text-4xl font-extrabold text-center text-black my-6"
               data-aos="fade-up"
             >
               Featured Movies
@@ -66,7 +66,7 @@ const Home = () => {
           <div className="flex my-4">
             <div className="divider divider-horizontal p-2 bg-red-600"></div>
             <h1
-              className=" text-xl md:text-4xl font-extrabold text-center text-gray-900 my-6"
+              className=" text-xl md:text-4xl font-extrabold text-center text-black my-6"
               data-aos="fade-up"
             >
               Latest Release

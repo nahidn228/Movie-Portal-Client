@@ -122,7 +122,7 @@ const Navbar = () => {
         </div>
         <NavLink
           to="/"
-          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-ghost normal-case text-lg md:text-2xl font-extrabold text-white hover:text-yellow-300"
+          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-ghost normal-case text-lg md:text-2xl font-extrabold text-white hover:text-yellow-300 "
         >
           MOVIE PORTAL
         </NavLink>
