@@ -11,9 +11,10 @@ import Login from "../pages/Login";
 import MyFavorite from "../pages/MyFavorite";
 import Register from "../pages/Register";
 
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import NotFound from "../pages/NotFound";
 import Blog from "../pages/Blog";
+import NotFound from "../pages/NotFound";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import UpdateMovie from "../pages/UpdateMovie";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "/all-movies",
         element: <AllMovies></AllMovies>,
-        loader: () => fetch("http://localhost:5000/movies"),
+        loader: () => fetch("https://full-stack-go.vercel.app/movies"),
       },
       {
         path: "/add-movie",
@@ -46,13 +47,21 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/update-movie",
+        element:  (
+          <PrivateRoute>
+            <UpdateMovie></UpdateMovie>
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/favorites",
         element: (
           <PrivateRoute>
             <MyFavorite></MyFavorite>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/favorite-movies"),
+        loader: () => fetch("https://full-stack-go.vercel.app/favorite-movies"),
       },
       {
         path: "/blog",
@@ -81,7 +90,7 @@ const router = createBrowserRouter([
             <CardDetails></CardDetails>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/movies"),
+        loader: () => fetch("https://full-stack-go.vercel.app/movies"),
       },
     ],
   },

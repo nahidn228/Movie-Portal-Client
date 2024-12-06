@@ -17,6 +17,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const [user, setUser] = useState(null);
+  const [updateMovie, setUpdateMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
 
@@ -77,6 +78,8 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     email,
     setEmail,
+    updateMovie,
+    setUpdateMovie,
   };
 
   return (

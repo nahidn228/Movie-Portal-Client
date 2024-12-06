@@ -63,6 +63,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          to="/update-movie"
+          className="hover:text-accent font-semibold transition duration-300"
+        >
+          Update Movie
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/favorites"
           className="hover:text-accent font-semibold transition duration-300"
         >

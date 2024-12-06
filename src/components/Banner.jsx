@@ -8,7 +8,7 @@ const Banner = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/movies")
+    fetch("https://full-stack-go.vercel.app/movies")
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);

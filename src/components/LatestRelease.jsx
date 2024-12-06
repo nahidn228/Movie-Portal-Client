@@ -5,7 +5,7 @@ const LatestRelease = () => {
   //   const FeaturedMovie = useLoaderData();
   //   console.log(FeaturedMovie);
   useEffect(() => {
-    fetch("http://localhost:5000/latestRelease")
+    fetch("https://full-stack-go.vercel.app/latestRelease")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

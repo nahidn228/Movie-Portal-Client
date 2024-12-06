@@ -10,7 +10,7 @@ const MyFavorite = () => {
 
   // Fetch favorites on component mount
   useEffect(() => {
-    fetch("http://localhost:5000/favorite-movies")
+    fetch("https://full-stack-go.vercel.app/favorite-movies")
       .then((res) => res.json())
       .then((data) => {
         // Filter data by user email
@@ -36,7 +36,7 @@ const MyFavorite = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/favorite-movies/${id}`, {
+        fetch(`https://full-stack-go.vercel.app/favorite-movies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

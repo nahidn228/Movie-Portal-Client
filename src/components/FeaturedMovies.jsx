@@ -6,7 +6,7 @@ const FeaturedMovies = () => {
   //   const FeaturedMovie = useLoaderData();
   //   console.log(FeaturedMovie);
   useEffect(() => {
-    fetch("http://localhost:5000/featuredMovies")
+    fetch("https://full-stack-go.vercel.app/featuredMovies")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -16,7 +16,7 @@ const FeaturedMovies = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {movies.map((movie) => (
           <div
             key={movie._id}
@@ -24,7 +24,7 @@ const FeaturedMovies = () => {
           >
             {/* Label for the tag */}
             <div className="absolute top-2 left-2 bg-red-600 text-xs font-semibold uppercase text-white px-2 py-1 rounded">
-            Featured Movie
+              Featured Movie
             </div>
 
             {/* Movie Poster */}
@@ -72,9 +72,9 @@ const FeaturedMovies = () => {
               <div>
                 {/* Button */}
                 <Link to={`/all-movies/${movie._id}`}>
-                <button className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all">
-                  See Details
-                </button>
+                  <button className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all">
+                    See Details
+                  </button>
                 </Link>
               </div>
             </div>

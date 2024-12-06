@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
-const AddMovies = () => {
+const UpdateMovie = () => {
+  const { updateMovie } = useContext(AuthContext);
+  const navigate = useNavigate();
   const genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"];
   const year = [
     2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2017, 2016, 2015, 2014,
@@ -15,7 +19,7 @@ const AddMovies = () => {
 
   // Handle Rating Change
   const handleRatingChange = (newRating) => {
-    setRating(newRating / 10);
+    setRating(newRating * 2);
   };
 
   const handleSubmit = (e) => {
@@ -77,7 +81,7 @@ const AddMovies = () => {
       setTitleError("");
     }
 
-    const movieData = {
+    const updateMovieData = {
       poster,
       title,
       genre,
@@ -87,19 +91,26 @@ const AddMovies = () => {
       summary,
     };
 
-    console.log(movieData);
+    console.log(updateMovieData);
 
-    fetch("https://full-stack-go.vercel.app/movies", {
-      method: "POST",
+    fetch(`http://localhost:5000/movies/${updateMovie._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(movieData),
+      body: JSON.stringify(updateMovieData),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        navigate("/all-movies");
+        Swal.fire({
+          icon: "success",
+          title: "Movie Updated!",
+          text: ` ${title} Updated successfully.`,
+        });
       });
+    e.target.reset();
   };
 
   return (
@@ -118,6 +129,7 @@ const AddMovies = () => {
               type="url"
               id="poster"
               name="poster"
+              defaultValue={updateMovie?.poster}
               placeholder="Enter movie poster URL"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
@@ -136,6 +148,7 @@ const AddMovies = () => {
               type="text"
               id="title"
               name="title"
+              defaultValue={updateMovie?.title}
               placeholder="Enter movie title"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
@@ -153,6 +166,7 @@ const AddMovies = () => {
             <select
               id="genre"
               name="genre"
+              defaultValue={updateMovie?.genre}
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
             >
@@ -176,6 +190,7 @@ const AddMovies = () => {
               type="number"
               id="duration"
               name="duration"
+              defaultValue={updateMovie?.duration}
               placeholder="Enter duration"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
@@ -191,6 +206,7 @@ const AddMovies = () => {
               type="number"
               id="releaseYear"
               name="releaseYear"
+              defaultValue={updateMovie?.releaseYear}
               placeholder="Enter release year"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
@@ -211,7 +227,7 @@ const AddMovies = () => {
             <div>
               <Rating
                 onClick={handleRatingChange}
-                ratingValue={rating * 10}
+                ratingValue={rating * 2}
                 size={30}
                 transition
                 fillColor="gold"
@@ -232,6 +248,7 @@ const AddMovies = () => {
             <textarea
               id="summary"
               name="summary"
+              defaultValue={updateMovie?.summary}
               placeholder="Enter movie summary"
               required
               className="w-full mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none"
@@ -246,7 +263,7 @@ const AddMovies = () => {
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-bold rounded-lg shadow-md hover:bg-yellow-400 transition-all duration-300 transform hover:scale-105"
           >
-            Add Movie
+            Update Movie
           </button>
         </form>
       </div>
@@ -254,4 +271,4 @@ const AddMovies = () => {
   );
 };
 
-export default AddMovies;
+export default UpdateMovie;

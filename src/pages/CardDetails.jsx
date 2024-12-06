@@ -4,13 +4,14 @@ import { useContext, useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
-import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
 import { AuthContext } from "../provider/AuthProvider";
 
 const CardDetails = () => {
-  const { user } = useContext(AuthContext);
+  const { user,  setUpdateMovie } = useContext(AuthContext);
+
   const { id } = useParams();
   const data = useLoaderData();
   const [movie, setMovie] = useState(null);
@@ -35,7 +36,7 @@ const CardDetails = () => {
   }, [data, id]);
 
   // useEffect(() => {
-  //   fetch("http://localhost:5000/favorite-movies")
+  //   fetch("https://full-stack-go.vercel.app/favorite-movies")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);
@@ -48,6 +49,7 @@ const CardDetails = () => {
 
   const { _id, poster, title, genre, duration, releaseYear, rating, summary } =
     movie;
+  setUpdateMovie(movie);
 
   const handleDeleteMovie = (id) => {
     Swal.fire({
@@ -59,7 +61,7 @@ const CardDetails = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/movies/${id}`, {
+        fetch(`https://full-stack-go.vercel.app/movies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -90,7 +92,7 @@ const CardDetails = () => {
     console.log(userEmail);
     const movieWithUserEmail = { ...movie, userEmail: userEmail };
 
-    fetch("http://localhost:5000/favorite-movies", {
+    fetch("https://full-stack-go.vercel.app/favorite-movies", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -107,6 +109,10 @@ const CardDetails = () => {
         );
         navigate("/all-movies");
       });
+  };
+
+  const handleUpdateMovie = (id) => {
+    console.log(id);
   };
 
   return (
@@ -168,6 +174,14 @@ const CardDetails = () => {
           >
             Add to Favorite
           </button>
+          <Link to="/update-movie">
+            <button
+              onClick={() => handleUpdateMovie(_id)}
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Update Movie
+            </button>
+          </Link>
         </div>
       </div>
     </div>

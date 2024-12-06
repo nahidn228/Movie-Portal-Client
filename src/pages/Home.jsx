@@ -8,7 +8,7 @@ const Home = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/UpcomingMovie")
+    fetch("https://full-stack-go.vercel.app/UpcomingMovie")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
