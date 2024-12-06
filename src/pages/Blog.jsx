@@ -24,7 +24,6 @@ const Blog = () => {
       date: "October 2024",
       id: 3,
     },
-    // Add more posts as needed
   ];
 
   useEffect(() => {
@@ -32,18 +31,18 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 ">
-      <div className="container w-11/12 mx-auto py-12">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <header className="text-center text-white">
+        <header className="text-center text-white mb-10">
           <h1
-            className="text-5xl font-bold text-yellow-300 mb-4 animate__animated animate__fadeInUp"
+            className="text-4xl sm:text-5xl font-bold text-yellow-300 mb-4"
             data-aos="fade-up"
           >
             Movie Portal Blog
           </h1>
           <p
-            className="mt-4 text-xl animate__animated animate__fadeInUp"
+            className="mt-4 text-lg sm:text-xl"
             data-aos="fade-up"
             data-aos-delay="200"
           >
@@ -52,26 +51,30 @@ const Blog = () => {
           </p>
         </header>
 
-        <div className="flex mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Main Content - Blog Posts */}
-          <div className="w-3/4 mr-8">
+          <div className="col-span-1 md:col-span-3">
             {blogPosts.map((post) => (
               <div
                 key={post.id}
                 className="bg-white p-6 rounded-lg shadow-lg mb-6 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <h2
-                  className="text-3xl font-semibold text-black hover:text-accent transition duration-300"
+                  className="text-2xl sm:text-3xl font-semibold text-black hover:text-accent transition duration-300"
                   data-aos="zoom-in-up"
                 >
                   <NavLink to={`/blog/${post.id}`}>{post.title}</NavLink>
                 </h2>
-                <p className="mt-4 text-gray-600">{post.excerpt}</p>
+                <p className="mt-4 text-gray-600 text-sm sm:text-base">
+                  {post.excerpt}
+                </p>
                 <div className="flex justify-between items-center mt-4">
-                  <span className="text-sm text-gray-500">{post.date}</span>
+                  <span className="text-xs sm:text-sm text-gray-500">
+                    {post.date}
+                  </span>
                   <NavLink
                     to={`/blog/${post.id}`}
-                    className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-105"
+                    className="text-xs sm:text-sm font-semibold text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-105"
                     data-aos="fade-left"
                   >
                     Read More
@@ -82,12 +85,12 @@ const Blog = () => {
           </div>
 
           {/* Sidebar Section */}
-          <div className="w-1/4">
+          <div className="col-span-1">
             <div
               className="bg-white p-6 rounded-lg shadow-lg"
               data-aos="fade-left"
             >
-              <h3 className="text-xl font-semibold text-black mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-black mb-4">
                 Categories
               </h3>
               <ul className="text-gray-600">
@@ -123,15 +126,15 @@ const Blog = () => {
               className="mt-8 bg-white p-6 rounded-lg shadow-lg"
               data-aos="fade-right"
             >
-              <h3 className="text-xl font-semibold text-black mb-4">
+              <h3 className="text-lg sm:text-xl font-semibold text-black mb-4">
                 Popular Posts
               </h3>
               <ul className="text-gray-600">
-                {blogPosts.slice(0, 3).map((post) => (
+                {blogPosts.map((post) => (
                   <li key={post.id} className="mb-4">
                     <NavLink
                       to={`/blog/${post.id}`}
-                      className="text-sm text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-105"
+                      className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 transition-all duration-300 transform hover:scale-105"
                     >
                       {post.title}
                     </NavLink>
