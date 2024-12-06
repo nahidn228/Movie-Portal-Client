@@ -1,9 +1,13 @@
 import { useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
 import { AuthContext } from "../provider/AuthProvider";
+import { Helmet } from "react-helmet";
 
 const MyFavorite = () => {
+  const location = useLocation();
+  console.log(location);
   const { user } = useContext(AuthContext);
   const [favorite, setFavorite] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -64,6 +68,13 @@ const MyFavorite = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white px-5 py-10">
+      
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>My Favorite - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      
       <h1 className="text-xl md:text-4xl font-extrabold text-center text-gray-100 mb-6">
         Favorite Movies: {favorite?.length}
       </h1>

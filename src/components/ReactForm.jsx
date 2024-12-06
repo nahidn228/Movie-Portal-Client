@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import {
   FaEnvelope,
@@ -17,6 +18,8 @@ const Login = () => {
   const { loginWithGoogle, loginUser, setLoading, setEmail } =
     useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+
+  console.log(location.state);
 
   const {
     register,
@@ -37,7 +40,7 @@ const Login = () => {
 
         reset(); // Clear the form
 
-        navigate(location?.state?.from || "/");
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: "Successfully Logged-in",
           text: `${user?.displayName || "User"} successfully logged in!`,
@@ -61,7 +64,7 @@ const Login = () => {
         const user = result.user;
         console.log(user);
 
-        navigate(location?.state?.from || "/");
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: "Successfully Logged-in",
           text: `${user?.displayName || "User"} successfully logged in!`,
@@ -85,6 +88,12 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <div className="w-full max-w-lg bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Sign In to Movie Portal

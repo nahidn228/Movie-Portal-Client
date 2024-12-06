@@ -3,7 +3,7 @@ import { FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
-
+import { Helmet } from "react-helmet";
 const ForgotPassword = () => {
   const { email, resetPassword } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -41,6 +41,13 @@ const ForgotPassword = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+        <Helmet>
+        <meta charSet="utf-8" />
+        <title>Reset Password - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      
+      
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
         <h2 className="text-3xl font-bold text-center text-yellow-400 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Forgot Password

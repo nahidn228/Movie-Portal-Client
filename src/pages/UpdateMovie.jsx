@@ -1,13 +1,24 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
-
 const UpdateMovie = () => {
+  const location = useLocation();
+  console.log(location);
   const { updateMovie } = useContext(AuthContext);
   const navigate = useNavigate();
-  const genres = ["Action", "Comedy", "Drama", "Horror", "Romance", "Sci-Fi"];
+  const genres = [
+    "Action",
+    "Comedy",
+    "Drama",
+    "Horror",
+    "Romance",
+    "Sci-Fi",
+    "Thriller",
+    "Crime",
+  ];
   const year = [
     2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2017, 2016, 2015, 2014,
     2013, 2012, 2011, 2010,
@@ -115,6 +126,12 @@ const UpdateMovie = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{updateMovie?.title} - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+
       <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl p-10">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6">
           Add a Movie

@@ -1,7 +1,7 @@
 import "animate.css";
 import { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 import {
   FaCamera,
   FaEnvelope,
@@ -93,15 +93,16 @@ const Register = () => {
   const handleGoogleRegister = () => {
     loginWithGoogle()
       .then((result) => {
-        Swal.fire({
-          title: `Successfully Signed-up`,
-          text: `${user?.displayName} Your account created successfully`,
-          icon: "success",
-        });
         const user = result.user;
         console.log(user);
         setUser(result.user);
+       
         navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: `Successfully Logged-in`,
+          text: `${user?.displayName} You are successfully Logged-in`,
+          icon: "success",
+        });
       })
       .catch((error) => {
         // Handle Errors here.
@@ -118,6 +119,13 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+     
+     <Helmet>
+        <meta charSet="utf-8" />
+        <title>Register - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+     
       <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl p-10 transform transition-all duration-1000 ease-in-out hover:scale-105">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6 animate__animated animate__fadeIn animate__delay-1s">
           Register to Movie Portal

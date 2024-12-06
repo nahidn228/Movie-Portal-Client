@@ -2,7 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // Import AOS styles
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 const Blog = () => {
   const blogPosts = [
     {
@@ -32,6 +32,11 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+        <Helmet>
+        <meta charSet="utf-8" />
+        <title>Blogs - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <header className="text-center text-white mb-10">

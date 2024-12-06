@@ -79,10 +79,7 @@ const router = createBrowserRouter([
         path: "/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
-      {
-        path: "*",
-        element: <NotFound></NotFound>,
-      },
+
       {
         path: "/all-movies/:id",
         element: (
@@ -93,6 +90,10 @@ const router = createBrowserRouter([
         loader: () => fetch("https://full-stack-go.vercel.app/movies"),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);
 

@@ -4,6 +4,7 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const NotFound = () => {
   useEffect(() => {
@@ -12,6 +13,11 @@ const NotFound = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-gray-900 text-white px-6 py-10 md:py-0">
+        <Helmet>
+        <meta charSet="utf-8" />
+        <title>Not Found - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Left Section: Animated Image */}
         <div
@@ -28,7 +34,7 @@ const NotFound = () => {
         {/* Right Section: Text and Button */}
         <div className="text-center md:text-left" data-aos="fade-left">
           <h1 className="text-6xl font-extrabold text-yellow-400 animate__animated animate__fadeInDown tracking-wide">
-            MOVIE PORTAL
+            MOVIE PORTAL <span className="text-lg text-white">says</span>
           </h1>
           <h2 className="text-3xl font-bold mt-4">Oops! Page Not Found 😢</h2>
           <p className="mt-4 text-gray-300 text-lg">

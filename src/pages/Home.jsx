@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
+import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
 import Banner from "../components/Banner";
 import FeaturedMovies from "../components/FeaturedMovies";
 import LatestRelease from "../components/LatestRelease";
-
 import UpcomingMovie from "../components/UpcomingMovie";
 const Home = () => {
+  const location = useLocation();
+  console.log(location);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -18,6 +21,11 @@ const Home = () => {
   }, []);
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <header>
         <Banner></Banner>
       </header>

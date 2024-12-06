@@ -2,9 +2,10 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-
+import { Helmet } from "react-helmet";
 const AllMovies = () => {
   const data = useLoaderData();
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(data);
 
@@ -18,6 +19,11 @@ const AllMovies = () => {
 
   return (
     <div className="w-11/12 mx-auto ">
+        <Helmet>
+        <meta charSet="utf-8" />
+        <title>All Movies - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <h1
         className="text-3xl font-bold text-center text-yellow-400 my-6"
         data-aos="fade-up"

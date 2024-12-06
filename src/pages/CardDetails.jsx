@@ -1,16 +1,25 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
-import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
 import { AuthContext } from "../provider/AuthProvider";
 
 const CardDetails = () => {
-  const { user,  setUpdateMovie } = useContext(AuthContext);
+  const location = useLocation();
+  console.log(location);
+  const { user, setUpdateMovie } = useContext(AuthContext);
 
   const { id } = useParams();
   const data = useLoaderData();
@@ -47,7 +56,7 @@ const CardDetails = () => {
   // Check if the movie is loaded
   if (!movie) return <Loader></Loader>;
 
-  const { _id, poster, title, genre, duration, releaseYear, rating, summary } =
+  const { poster, title, genre, duration, releaseYear, rating, summary } =
     movie;
   setUpdateMovie(movie);
 
@@ -90,7 +99,16 @@ const CardDetails = () => {
 
     const userEmail = user.email;
     console.log(userEmail);
-    const movieWithUserEmail = { ...movie, userEmail: userEmail };
+    const movieWithUserEmail = {
+      poster,
+      title,
+      genre,
+      duration,
+      releaseYear,
+      rating,
+      summary,
+      userEmail: userEmail,
+    };
 
     fetch("https://full-stack-go.vercel.app/favorite-movies", {
       method: "POST",
@@ -117,6 +135,11 @@ const CardDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center px-5 py-10">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title} - MOVIE PORTAL</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       <div
         data-aos="fade-up"
         className="max-w-3xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6 animate__animated animate__fadeIn"
@@ -163,20 +186,20 @@ const CardDetails = () => {
         {/* Buttons Section */}
         <div className="flex justify-center gap-4">
           <button
-            onClick={() => handleDeleteMovie(_id)}
+            onClick={() => handleDeleteMovie(movie._id)}
             className="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition"
           >
             Delete Movie
           </button>
           <button
-            onClick={() => handleAddToFavorites(_id)}
+            onClick={() => handleAddToFavorites(movie._id)}
             className="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition"
           >
             Add to Favorite
           </button>
           <Link to="/update-movie">
             <button
-              onClick={() => handleUpdateMovie(_id)}
+              onClick={() => handleUpdateMovie(movie._id)}
               className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
             >
               Update Movie
