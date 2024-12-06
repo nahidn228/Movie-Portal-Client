@@ -122,7 +122,7 @@ const UpdateMovie = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Movie Poster */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Movie Poster (URL)
             </label>
             <input
@@ -141,7 +141,7 @@ const UpdateMovie = () => {
 
           {/* Movie Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Movie Title
             </label>
             <input
@@ -160,7 +160,7 @@ const UpdateMovie = () => {
 
           {/* Genre */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Genre
             </label>
             <select
@@ -183,7 +183,7 @@ const UpdateMovie = () => {
 
           {/* Duration */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Duration (minutes)
             </label>
             <input
@@ -199,7 +199,7 @@ const UpdateMovie = () => {
 
           {/* Release Year */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Release Year
             </label>
             <select
@@ -221,7 +221,7 @@ const UpdateMovie = () => {
 
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Rating (1-10)
             </label>
             <div>
@@ -242,7 +242,7 @@ const UpdateMovie = () => {
 
           {/* Summary */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Summary
             </label>
             <textarea

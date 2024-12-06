@@ -40,7 +40,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           Home
         </NavLink>
@@ -48,7 +52,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/all-movies"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           All Movies
         </NavLink>
@@ -56,23 +64,35 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/add-movie"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           Add Movie
         </NavLink>
       </li>
-      <li>
+      {/* <li>
         <NavLink
           to="/update-movie"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           Update Movie
         </NavLink>
-      </li>
+      </li> */}
       <li>
         <NavLink
           to="/favorites"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           My Favorites
         </NavLink>
@@ -80,7 +100,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/blog"
-          className="hover:text-accent font-semibold transition duration-300"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
         >
           Blogs
         </NavLink>

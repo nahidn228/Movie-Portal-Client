@@ -61,7 +61,7 @@ const Blog = () => {
                 className="bg-white p-6 rounded-lg shadow-lg mb-6 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <h2
-                  className="text-3xl font-semibold text-gray-800 hover:text-accent transition duration-300"
+                  className="text-3xl font-semibold text-black hover:text-accent transition duration-300"
                   data-aos="zoom-in-up"
                 >
                   <NavLink to={`/blog/${post.id}`}>{post.title}</NavLink>
@@ -87,7 +87,7 @@ const Blog = () => {
               className="bg-white p-6 rounded-lg shadow-lg"
               data-aos="fade-left"
             >
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-xl font-semibold text-black mb-4">
                 Categories
               </h3>
               <ul className="text-gray-600">
@@ -123,7 +123,7 @@ const Blog = () => {
               className="mt-8 bg-white p-6 rounded-lg shadow-lg"
               data-aos="fade-right"
             >
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-xl font-semibold text-black mb-4">
                 Popular Posts
               </h3>
               <ul className="text-gray-600">

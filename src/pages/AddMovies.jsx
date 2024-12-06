@@ -111,7 +111,7 @@ const AddMovies = () => {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Movie Poster */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black ">
               Movie Poster (URL)
             </label>
             <input
@@ -129,7 +129,7 @@ const AddMovies = () => {
 
           {/* Movie Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Movie Title
             </label>
             <input
@@ -147,7 +147,7 @@ const AddMovies = () => {
 
           {/* Genre */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Genre
             </label>
             <select
@@ -169,7 +169,7 @@ const AddMovies = () => {
 
           {/* Duration */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Duration (minutes)
             </label>
             <input
@@ -184,7 +184,7 @@ const AddMovies = () => {
 
           {/* Release Year */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Release Year
             </label>
             <select
@@ -205,7 +205,7 @@ const AddMovies = () => {
 
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Rating (1-10)
             </label>
             <div>
@@ -226,7 +226,7 @@ const AddMovies = () => {
 
           {/* Summary */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-black">
               Summary
             </label>
             <textarea
