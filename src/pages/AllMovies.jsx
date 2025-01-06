@@ -1,11 +1,11 @@
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
-import { Helmet } from "react-helmet";
 const AllMovies = () => {
   const data = useLoaderData();
-  
+
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(data);
 
@@ -18,17 +18,17 @@ const AllMovies = () => {
   }, [searchQuery, data]);
 
   return (
-    <div className="w-11/12 mx-auto ">
-        <Helmet>
+    <div className="">
+      <Helmet>
         <meta charSet="utf-8" />
         <title>All Movies - MOVIE PORTAL</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <h1
-        className="text-3xl font-bold text-center text-yellow-400 my-6"
+        className="text-4xl font-semibold text-white py-10 text-center"
         data-aos="fade-up"
       >
-        ALL Movies
+        All Movies
       </h1>
 
       {/* Search Box */}
@@ -44,7 +44,7 @@ const AllMovies = () => {
 
       {/* Movies Grid */}
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10"
+        className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 my-10"
         data-aos="fade-up"
       >
         {filteredMovies.length > 0 ? (

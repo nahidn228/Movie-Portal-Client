@@ -20,11 +20,11 @@ const Banner = () => {
   }
 
   return (
-    <div className="swiper-container py-10 bg-black">
+    <div className="swiper-container py-10 bg-[#131720]">
       <Swiper
         spaceBetween={20}
-        slidesPerView={2}
         centeredSlides={true}
+        
         autoplay={{
           delay: 1000,
           disableOnInteraction: false,
@@ -36,6 +36,20 @@ const Banner = () => {
         speed={1000}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
+        breakpoints={{
+          // Small devices (e.g., mobile)
+          640: {
+            slidesPerView: 1,
+          },
+          // Medium devices (e.g., tablets)
+          768: {
+            slidesPerView: 2,
+          },
+          // Large devices (e.g., desktops)
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
       >
         {movies.map((movie, index) => (
           <SwiperSlide key={index} className="relative group">
@@ -43,7 +57,7 @@ const Banner = () => {
             <img
               src={movie.poster}
               alt={movie.title}
-              className="rounded-lg shadow-xl h-[400px] w-full object-cover"
+              className="rounded-lg shadow-xl h-[300px] w-full object-cover"
             />
 
             {/* Overlay */}

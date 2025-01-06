@@ -13,6 +13,7 @@ import Register from "../pages/Register";
 
 import Blog from "../pages/Blog";
 import NotFound from "../pages/NotFound";
+import PopularMovies from "../pages/PopularMovies";
 import UpdateMovie from "../pages/UpdateMovie";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
@@ -79,14 +80,18 @@ const router = createBrowserRouter([
         path: "/forgotPassword",
         element: <ForgotPassword></ForgotPassword>,
       },
+      {
+        path: "/featured-movies",
+        element: <FeaturedMovies></FeaturedMovies>,
+      },
+      {
+        path: "/popular-movies",
+        element: <PopularMovies></PopularMovies>,
+      },
 
       {
         path: "/all-movies/:id",
-        element: (
-          <PrivateRoute>
-            <CardDetails></CardDetails>
-          </PrivateRoute>
-        ),
+        element: <CardDetails></CardDetails>,
         loader: () => fetch("https://full-stack-go.vercel.app/movies"),
       },
     ],

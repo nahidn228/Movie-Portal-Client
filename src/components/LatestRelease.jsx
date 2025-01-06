@@ -14,14 +14,15 @@ const LatestRelease = () => {
   }, []);
   return (
     <div className="flex ">
+      
       {movies.map((movie) => (
         <div
           key={movie._id}
-          className="max-w-xs bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative m-4 "
+          className="max-w-60 bg-gray-900 text-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative m-4 "
         >
           {/* Label for the tag */}
           <div className="absolute top-2 left-2 bg-red-600 text-xs font-semibold uppercase text-white px-2 py-1 rounded">
-            Latest Release (WEB-DL)
+            Latest Release
           </div>
 
           {/* Movie Poster */}

@@ -1,17 +1,17 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-10">
+    <footer className="bg-[#131720] text-white py-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 pl-4">
         {/* Column 1: About Section */}
-        <div data-aos="fade-up" data-aos-duration="1000" >
+        <div data-aos="fade-up" data-aos-duration="1000">
           <h1
-            className="text-white text-xl md:text-7xl font-extrabold tracking-widest transform transition duration-1000 ease-in-out"
+            className="text-white text-xl md:text-4xl font-extrabold tracking-widest transform transition duration-1000 ease-in-out"
             data-aos="fade-up"
             data-aos-duration="1500"
           >
             Movie Portal
           </h1>
-          <p className="text-gray-400">
+          <p className="text-gray-400 py-6">
             Discover, explore, and manage your favorite movies effortlessly.
             Your one-stop portal for all things movies!
           </p>
@@ -118,12 +118,23 @@ const Footer = () => {
               </svg>
             </a>
           </div>
+          <div className="my-6">
+            <div className="join">
+              <input
+                className="input bg-[#1F2937] input-bordered join-item"
+                placeholder="Email"
+              />
+              <button className="btn join-item bg-[#2563EB] rounded-r-full border-0 text-white">
+                Subscribe
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Footer Bottom */}
       <div className="mt-10 text-center text-gray-400 text-sm">
-        <p>© 2024 Movie Portal. All Rights Reserved.</p>
+        <p>© {new Date().getFullYear()} Movie Portal. All Rights Reserved.</p>
       </div>
     </footer>
   );

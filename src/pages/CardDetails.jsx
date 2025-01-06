@@ -1,8 +1,8 @@
+import { Rating } from "@smastrom/react-rating";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { FaStar } from "react-icons/fa";
 import { IoMdTime } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
 import {
@@ -12,6 +12,8 @@ import {
   useNavigate,
   useParams,
 } from "react-router-dom";
+
+import "@smastrom/react-rating/style.css";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
 import { AuthContext } from "../provider/AuthProvider";
@@ -179,8 +181,7 @@ const CardDetails = () => {
         </div>
         <p className="text-lg mb-4">{summary}</p>
         <div className="flex items-center gap-2 mb-6">
-          <FaStar className="text-yellow-500 text-xl" />
-          <span className="text-xl font-semibold">{rating}</span>
+          <Rating style={{ maxWidth: 100 }} value={rating / 2} />
         </div>
 
         {/* Buttons Section */}

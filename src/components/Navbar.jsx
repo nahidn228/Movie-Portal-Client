@@ -119,7 +119,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-gradient-to-r from-indigo-950 via-purple-950 to-pink-950 text-white shadow-lg">
+    <div className="navbar bg-[#131720] text-white shadow-lg">
       {/* Navbar Start */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -152,7 +152,7 @@ const Navbar = () => {
         </div>
         <NavLink
           to="/"
-          className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-ghost normal-case text-lg md:text-2xl font-extrabold text-white hover:text-yellow-300 "
+          className=" normal-case text-lg md:text-2xl font-extrabold text-white hover:text-yellow-300 "
         >
           MOVIE PORTAL
         </NavLink>

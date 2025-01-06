@@ -5,7 +5,7 @@ import { BsPlayCircle } from "react-icons/bs";
 import { GoStarFill } from "react-icons/go";
 import { Link } from "react-router-dom";
 
-const FeaturedMovies = () => {
+const PopularMovies = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetch("https://full-stack-go.vercel.app/featuredMovies")
@@ -19,7 +19,7 @@ const FeaturedMovies = () => {
         className="text-4xl font-semibold text-white py-10 text-center"
         data-aos="fade-up"
       >
-        Featured Movies
+        Popular Movies
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {movies.map((movie) => (
@@ -41,7 +41,7 @@ const FeaturedMovies = () => {
                 {/* "Hover" Text */}
                 <div className="absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black  bg-opacity-75">
                   <div className="absolute top-3 left-3 bg-white backdrop-blur-xl bg-opacity-35 text-xs font-medium uppercase text-white px-2 py-1 rounded">
-                    Featured
+                    Popular
                   </div>
                   <div className="absolute top-3 right-3 bg-white backdrop-blur-xl bg-opacity-35 text-sm font-medium uppercase text-white px-2 py-1 rounded flex gap-1 items-center">
                     <span className="text-yellow-400 font-bold">
@@ -128,7 +128,7 @@ const FeaturedMovies = () => {
       <div className="flex items-center justify-center my-10">
         <Link
           to="/all-movies"
-          className="btn btn-lg bg-[#162339] border-none text-white hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 px-10 rounded-2xl"
+          className="btn btn-md lg:btn-lg bg-[#162339] border-none text-white hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 px-10 py-2 rounded-2xl"
         >
           See all movies
         </Link>
@@ -137,4 +137,4 @@ const FeaturedMovies = () => {
   );
 };
 
-export default FeaturedMovies;
+export default PopularMovies;
