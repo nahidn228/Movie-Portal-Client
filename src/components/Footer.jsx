@@ -1,5 +1,5 @@
 import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
-import { FaVk } from "react-icons/fa6";
+import { SiMinutemailer } from "react-icons/si";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
@@ -88,13 +88,13 @@ const Footer = () => {
             >
               <FaTwitter />
             </a>
-            <a
+            {/* <a
               href="https://vk.com/"
               target="_blank"
               className="hover:text-pink-600 btn btn-sm bg-blue-400 border-none rounded-full transition duration-300"
             >
               <FaVk />
-            </a>
+            </a> */}
             <a
               href="https://www.tiktok.com/en/"
               target="_blank"
@@ -109,8 +109,8 @@ const Footer = () => {
                 className="input bg-[#1F2937] input-bordered join-item"
                 placeholder="Email"
               />
-              <button className="btn join-item bg-[#151F30] rounded-r-full border-0 text-white">
-                Subscribe
+              <button className="btn join-item bg-[#151F30] rounded-r-full border-0 text-white text-xl">
+                <SiMinutemailer />
               </button>
             </div>
           </div>

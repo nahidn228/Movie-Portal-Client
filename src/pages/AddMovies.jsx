@@ -132,14 +132,14 @@ const AddMovies = () => {
       </Helmet>
       
       
-      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl p-10">
+      <div className="w-full max-w-4xl bg-[#151F30] text-white rounded-3xl shadow-xl p-10">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6">
           Add a Movie
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Movie Poster */}
           <div>
-            <label className="block text-sm font-medium text-black ">
+            <label className="block text-sm font-medium  ">
               Movie Poster (URL)
             </label>
             <input
@@ -157,7 +157,7 @@ const AddMovies = () => {
 
           {/* Movie Title */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Movie Title
             </label>
             <input
@@ -175,7 +175,7 @@ const AddMovies = () => {
 
           {/* Genre */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Genre
             </label>
             <select
@@ -197,7 +197,7 @@ const AddMovies = () => {
 
           {/* Duration */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Duration (minutes)
             </label>
             <input
@@ -212,7 +212,7 @@ const AddMovies = () => {
 
           {/* Release Year */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Release Year
             </label>
             <select
@@ -233,7 +233,7 @@ const AddMovies = () => {
 
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Rating (1-10)
             </label>
             <div>
@@ -254,7 +254,7 @@ const AddMovies = () => {
 
           {/* Summary */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Summary
             </label>
             <textarea

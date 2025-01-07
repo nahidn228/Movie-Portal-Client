@@ -23,7 +23,7 @@ const plans = [
     highlight: true,
   },
   {
-    name: "Premium + TV channels",
+    name: "TV channels +",
     price: "$49.99/month",
     features: [
       { text: "FlixTV Originals", included: true },

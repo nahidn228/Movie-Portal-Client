@@ -128,18 +128,18 @@ const UpdateMovie = () => {
     <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>{updateMovie?.title} - MOVIE PORTAL</title>
+        <title>{`${updateMovie?.title} - MOVIE PORTAL`}</title>
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
 
-      <div className="w-full max-w-4xl bg-white rounded-3xl shadow-xl p-10">
+      <div className="w-full max-w-4xl bg-[#151F30] rounded-3xl shadow-xl p-10">
         <h2 className="text-4xl font-bold text-center text-yellow-400 mb-6">
-          Add a Movie
+          Update a Movie
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Movie Poster */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Movie Poster (URL)
             </label>
             <input
@@ -158,7 +158,7 @@ const UpdateMovie = () => {
 
           {/* Movie Title */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Movie Title
             </label>
             <input
@@ -177,7 +177,7 @@ const UpdateMovie = () => {
 
           {/* Genre */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Genre
             </label>
             <select
@@ -200,7 +200,7 @@ const UpdateMovie = () => {
 
           {/* Duration */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Duration (minutes)
             </label>
             <input
@@ -216,7 +216,7 @@ const UpdateMovie = () => {
 
           {/* Release Year */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Release Year
             </label>
             <select
@@ -238,7 +238,7 @@ const UpdateMovie = () => {
 
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Rating (1-10)
             </label>
             <div>
@@ -259,7 +259,7 @@ const UpdateMovie = () => {
 
           {/* Summary */}
           <div>
-            <label className="block text-sm font-medium text-black">
+            <label className="block text-sm font-medium ">
               Summary
             </label>
             <textarea
