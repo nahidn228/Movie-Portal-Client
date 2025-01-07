@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const CategoryTab = () => {
   return (
-    <div className="bg-[#151F30] flex  items-center justify-between px-2  py-3 rounded-full  my-10">
+    <div className="bg-[#151F30] flex flex-col md:flex-row  items-center justify-between px-2  py-3 rounded-full  my-10">
       <div className="">
         <Link
           to="/all-movies"

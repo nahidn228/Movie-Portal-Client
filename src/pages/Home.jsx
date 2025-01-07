@@ -9,10 +9,12 @@ import LatestRelease from "../components/LatestRelease";
 import PricingPlans from "../components/PricingPlans";
 import ReactSlick from "../components/ReactSlick";
 import UpcomingMovie from "./../components/UpcomingMovie";
+import Loader from "./../components/Loader";
 const Home = () => {
   const location = useLocation();
   console.log(location);
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://full-stack-go.vercel.app/UpcomingMovie")
@@ -20,8 +22,14 @@ const Home = () => {
       .then((data) => {
         console.log(data);
         setData(data);
+        setIsLoading(false)
       });
   }, []);
+
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
   return (
     <div>
       <Helmet>
@@ -32,7 +40,7 @@ const Home = () => {
       <header>
         <Banner></Banner>
       </header>
-      <main className="bg-[#131720]">
+      <main className="bg-[#131720] ">
         {/* Upcoming Movies */}
         <section>
           <h1
@@ -85,7 +93,7 @@ const Home = () => {
         </section>
 
         {/* Subscriptions */}
-        <section>
+        <section className="">
           <h1
             className="text-4xl font-semibold text-white py-4 "
             data-aos="fade-up"

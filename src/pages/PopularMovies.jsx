@@ -4,14 +4,22 @@ import { useEffect, useState } from "react";
 import { BsPlayCircle } from "react-icons/bs";
 import { GoStarFill } from "react-icons/go";
 import { Link } from "react-router-dom";
+import Loader from "./../components/Loader";
 
 const PopularMovies = () => {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetch("https://full-stack-go.vercel.app/featuredMovies")
       .then((res) => res.json())
-      .then((data) => setMovies(data));
+      .then((data) => {setMovies(data)
+        setIsLoading(false)
+      });
   }, []);
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <>
@@ -95,7 +103,7 @@ const PopularMovies = () => {
                 {/* "Hover" Text */}
                 <div className="absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black  bg-opacity-75">
                   <div className="absolute top-3 left-3 bg-white backdrop-blur-xl bg-opacity-35 text-xs font-medium uppercase text-white px-2 py-1 rounded">
-                    Featured
+                    Popular
                   </div>
                   <div className="absolute top-3 right-3 bg-white backdrop-blur-xl bg-opacity-35 text-sm font-medium uppercase text-white px-2 py-1 rounded flex gap-1 items-center">
                     <span className="text-yellow-400 font-bold">

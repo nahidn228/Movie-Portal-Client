@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { BsBadge3D, BsPlayCircle } from "react-icons/bs";
+import { GoStarFill } from "react-icons/go";
 import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../components/Loader";
 import { AuthContext } from "../provider/AuthProvider";
-import { Helmet } from "react-helmet";
 
 const MyFavorite = () => {
   const location = useLocation();
@@ -68,79 +70,67 @@ const MyFavorite = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white px-5 py-10">
-      
       <Helmet>
         <meta charSet="utf-8" />
         <title>My Favorite - MOVIE PORTAL</title>
-        <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
-      
+
       <h1 className="text-xl md:text-4xl font-extrabold text-center text-gray-100 mb-6">
         Favorite Movies: {favorite?.length}
       </h1>
 
       {favorite.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10">
-          {favorite.map((movie) => (
-            <div
-              key={movie._id}
-              className="bg-gray-800 text-white rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 relative"
-            >
-              {/* Favorite Tag */}
-              <div className="absolute top-2 left-2 bg-red-600 text-xs font-semibold uppercase text-white px-2 py-1 rounded">
-                Favorite Movie
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 my-10">
+          {favorite.map((movie, idx) => (
+            <div key={idx} className=" group  ml-4">
+              <div className="rounded-lg transform transition-all duration-300 hover:scale-105 relative overflow-hidden group">
+                {/* Movie Poster */}
+                <img
+                  src={movie.poster}
+                  alt={movie.title}
+                  className="w-full h-64 object-cover rounded-xl "
+                />
+
+                {/* "Hover" Text */}
+                <div className="absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black  bg-opacity-75 ">
+                  <div className="absolute bg-gray-800 backdrop-blur-xl bg-opacity-35  top-3 left-3   text-2xl font-medium uppercase  px-2 py-1 text-white rounded">
+                    <p className="flex items-center gap-1">
+                      {" "}
+                      <BsBadge3D />
+                    </p>
+                  </div>
+                  <div className="absolute top-3 right-3 bg-gray-800 backdrop-blur-xl bg-opacity-35 text-sm font-medium uppercase text-white px-2 py-1 rounded flex gap-1 items-center">
+                    <span className="text-yellow-400 font-bold">
+                      <GoStarFill />
+                    </span>{" "}
+                    {movie.rating / 2}
+                  </div>
+                  <BsPlayCircle />
+                </div>
               </div>
 
-              {/* Movie Poster */}
-              <img
-                src={movie.poster}
-                alt={movie.title}
-                className="w-full h-64 object-cover"
-              />
-
-              <div className="p-4 flex flex-col">
-                <div className="flex-grow">
-                  {/* Movie Title */}
-                  <h2 className="text-2xl font-bold mb-2 text-yellow-400">
-                    {movie.title}
-                  </h2>
-
-                  {/* Genre */}
-                  <p className="text-sm text-gray-300">
-                    <span className="font-semibold">Genre:</span>{" "}
-                    {Array.isArray(movie.genre)
-                      ? movie.genre.join(", ")
-                      : movie.genre}
+              {/* Movie Details */}
+              <div className="p-4 flex flex-col space-y-4 ">
+                <h2 className="text-2xl font-semibold text-white truncate group-hover:text-blue-500">
+                  {movie.title}
+                </h2>
+                <div className="flex justify-between items-center text-sm text-gray-300">
+                  <p>
+                    {Array.isArray(movie.genre) ? movie.genre[0] : movie.genre}
                   </p>
-
-                  {/* Duration */}
-                  <p className="text-sm text-gray-300">
-                    <span className="font-semibold">Duration:</span>{" "}
-                    {movie.duration} mins
-                  </p>
-
-                  {/* Release Year */}
-                  <p className="text-sm text-gray-300">
-                    <span className="font-semibold">Release Year:</span>{" "}
-                    {movie.releaseYear}
-                  </p>
-
-                  {/* Rating */}
-                  <p className="text-sm text-gray-300">
-                    <span className="font-semibold">Rating:</span> ⭐{" "}
-                    {movie.rating}/10
-                  </p>
+                  <p>{movie.duration} min</p>
+                  <p>{movie.releaseYear}</p>
                 </div>
-
                 <div>
                   {/* Delete Button */}
                   <button
                     onClick={() => handleDeleteFavorite(movie._id)}
-                    className="mt-4 w-full py-2 bg-gradient-to-r from-yellow-500 to-orange-600 text-gray-900 font-semibold rounded-lg hover:from-orange-600 hover:to-yellow-500 transition-all"
+                    className="btn btn-sm btn-neutral"
                   >
                     Delete from Favorites
                   </button>
                 </div>
+           
               </div>
             </div>
           ))}

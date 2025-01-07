@@ -1,13 +1,20 @@
 import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+import { AuthContext } from "../provider/AuthProvider";
+import Loader from "./../components/Loader";
 const AllMovies = () => {
   const data = useLoaderData();
+  const {  setAllMovies } = useContext(AuthContext);
+  setAllMovies(data);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredMovies, setFilteredMovies] = useState(data);
+  const [isLoading, setIsLoading] = useState(true);
+
+ 
 
   useEffect(() => {
     // Filter movies based on the search query
@@ -15,7 +22,20 @@ const AllMovies = () => {
       movie.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredMovies(filtered);
+
+      // Simulate a 3-second loading time
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+       // Cleanup timer
+    return () => clearTimeout(timer);
+
+
   }, [searchQuery, data]);
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <div className="">
@@ -47,6 +67,15 @@ const AllMovies = () => {
         className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 my-10"
         data-aos="fade-up"
       >
+        {filteredMovies.length > 0 ? (
+          filteredMovies.map((movie) => (
+            <MovieCard key={movie._id} movie={movie}></MovieCard>
+          ))
+        ) : (
+          <p className="text-center col-span-full text-gray-400">
+            No movies found for {searchQuery}.
+          </p>
+        )}
         {filteredMovies.length > 0 ? (
           filteredMovies.map((movie) => (
             <MovieCard key={movie._id} movie={movie}></MovieCard>

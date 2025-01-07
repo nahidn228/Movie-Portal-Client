@@ -16,6 +16,7 @@ import NotFound from "../pages/NotFound";
 import PopularMovies from "../pages/PopularMovies";
 import UpdateMovie from "../pages/UpdateMovie";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import Pricing from "../pages/Pricing";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "/popular-movies",
         element: <PopularMovies></PopularMovies>,
+      },
+      {
+        path: "/pricing",
+        element: <Pricing />,
       },
 
       {

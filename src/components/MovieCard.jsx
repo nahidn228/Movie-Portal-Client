@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
-import { BsPlayCircle } from "react-icons/bs";
+import { BsBadge3D, BsPlayCircle } from "react-icons/bs";
 import { GoStarFill } from "react-icons/go";
 import { Link } from "react-router-dom";
-import { BsBadge3D } from "react-icons/bs";
 
 const MovieCard = ({ movie }) => {
   const { _id, poster, title, genre, duration, releaseYear, rating } = movie;
@@ -56,7 +55,7 @@ const MovieCard = ({ movie }) => {
     // </div>
     <>
       <Link to={`/all-movies/${_id}`}>
-        <div className=" group  ">
+        <div className=" group  ml-4">
           {/* Featured Label */}
           {/* <div className="absolute top-2 left-2 bg-red-600 text-xs font-medium uppercase text-white px-2 py-1 rounded">
                 Featured Movie
@@ -73,8 +72,10 @@ const MovieCard = ({ movie }) => {
             {/* "Hover" Text */}
             <div className="absolute inset-0 flex justify-center items-center text-white text-6xl font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black  bg-opacity-75 ">
               <div className="absolute bg-gray-800 backdrop-blur-xl bg-opacity-35  top-3 left-3   text-2xl font-medium uppercase  px-2 py-1 text-white rounded">
-              <p className='flex items-center gap-1'> <BsBadge3D /></p>
-              
+                <p className="flex items-center gap-1">
+                  {" "}
+                  <BsBadge3D />
+                </p>
               </div>
               <div className="absolute top-3 right-3 bg-gray-800 backdrop-blur-xl bg-opacity-35 text-sm font-medium uppercase text-white px-2 py-1 rounded flex gap-1 items-center">
                 <span className="text-yellow-400 font-bold">

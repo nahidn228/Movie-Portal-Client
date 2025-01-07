@@ -124,7 +124,7 @@ const AddMovies = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-gray-800 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-[#131720] flex items-center justify-center p-6">
         <Helmet>
         <meta charSet="utf-8" />
         <title>Add Movie - MOVIE PORTAL</title>

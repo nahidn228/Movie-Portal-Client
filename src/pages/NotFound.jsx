@@ -12,7 +12,7 @@ const NotFound = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-900 via-purple-800 to-gray-900 text-white px-6 py-10 md:py-0">
+    <div className="flex items-center justify-center min-h-screen bg-[#131720] text-white px-6 py-10 md:py-0">
         <Helmet>
         <meta charSet="utf-8" />
         <title>Not Found - MOVIE PORTAL</title>

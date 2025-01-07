@@ -20,6 +20,7 @@ const AuthProvider = ({ children }) => {
   const [updateMovie, setUpdateMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
+  const [allMovies, setAllMovies] = useState([]);
 
   useEffect(() => {
     //get Current User
@@ -80,6 +81,8 @@ const AuthProvider = ({ children }) => {
     setEmail,
     updateMovie,
     setUpdateMovie,
+    allMovies,
+    setAllMovies,
   };
 
   return (

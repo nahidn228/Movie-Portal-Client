@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 import navImg from "../assets/user.png";
 import { AuthContext } from "../provider/AuthProvider";
-import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -67,18 +67,7 @@ const Navbar = () => {
           All Movies
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/add-movie"
-          className={({ isActive }) =>
-            isActive
-              ? "text-accent font-bold transition duration-300"
-              : "hover:text-accent font-semibold transition duration-300"
-          }
-        >
-          Add Movie
-        </NavLink>
-      </li>
+      
       {/* <li>
         <NavLink
           to="/update-movie"
@@ -91,16 +80,29 @@ const Navbar = () => {
           Update Movie
         </NavLink>
       </li> */}
+
       <li>
         <NavLink
-          to="/favorites"
+          to="/popular-movies"
           className={({ isActive }) =>
             isActive
               ? "text-accent font-bold transition duration-300"
               : "hover:text-accent font-semibold transition duration-300"
           }
         >
-          My Favorites
+          Popular
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/pricing"
+          className={({ isActive }) =>
+            isActive
+              ? "text-accent font-bold transition duration-300"
+              : "hover:text-accent font-semibold transition duration-300"
+          }
+        >
+          Pricing
         </NavLink>
       </li>
       <li>
@@ -115,6 +117,44 @@ const Navbar = () => {
           Blogs
         </NavLink>
       </li>
+      {user ? (
+        <li className="dropdown z-10">
+          <div tabIndex={0} role="button" className="text-accent">
+            ....
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-[#131720] rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            <li>
+            <NavLink
+              to="/add-movie"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-accent font-bold transition duration-300"
+                  : "hover:text-accent font-semibold transition duration-300"
+              }
+            >
+              Add Movie
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-accent font-bold transition duration-300"
+                  : "hover:text-accent font-semibold transition duration-300"
+              }
+            >
+              My Favorites
+            </NavLink>
+          </li>
+          </ul>
+        </li>
+      ) : (
+        ""
+      )}
     </>
   );
 

@@ -31,7 +31,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900">
+    <div className="min-h-screen">
         <Helmet>
         <meta charSet="utf-8" />
         <title>Blogs - MOVIE PORTAL</title>

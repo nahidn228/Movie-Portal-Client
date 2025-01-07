@@ -37,7 +37,7 @@ const plans = [
 const PricingPlans = () => {
   return (
     <div className="bg-gray-900 text-white py-16 px-8">
-      <div className="text-center mb-12">
+      <div data-aos="fade-up" className="text-center mb-12">
         <h1 className="text-4xl font-extrabold">Select Your Plan</h1>
         <p className="text-gray-400 mt-4">
           No hidden fees, equipment rentals, or installation appointments.
@@ -46,8 +46,9 @@ const PricingPlans = () => {
       <div className="flex flex-col md:flex-row gap-6 justify-center">
         {plans.map((plan, index) => (
           <div
+            data-aos="fade-up"
             key={index}
-            className={`p-6 rounded-lg shadow-lg ${
+            className={`p-6 rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 relative  ${
               plan.highlight ? "bg-blue-600" : "bg-gray-800"
             }`}
           >
