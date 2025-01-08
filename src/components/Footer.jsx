@@ -70,21 +70,21 @@ const Footer = () => {
             <a
               href="https://facebook.com"
               target="_blank"
-              className="hover:text-blue-600 bg-blue-400 border-none btn btn-sm rounded-full transition duration-300"
+              className="hover:text-blue-600 bg-[#263453] border-none btn btn-sm rounded-full transition duration-300"
             >
               <FaFacebook />
             </a>
             <a
               href="https://www.instagram.com/"
               target="_blank"
-              className="hover:text-blue-400 bg-blue-400 border-none btn btn-sm rounded-full transition duration-300"
+              className="hover:text-blue-400 bg-[#263453] border-none btn btn-sm rounded-full transition duration-300"
             >
               <FaInstagram />
             </a>
             <a
               href="https://x.com/"
               target="_blank"
-              className="hover:text-pink-600 btn btn-sm bg-blue-400 border-none rounded-full transition duration-300"
+              className="hover:text-pink-600 btn btn-sm bg-[#263453] border-none rounded-full transition duration-300"
             >
               <FaTwitter />
             </a>
@@ -98,7 +98,7 @@ const Footer = () => {
             <a
               href="https://www.tiktok.com/en/"
               target="_blank"
-              className="hover:text-pink-600 transition duration-300 btn btn-sm bg-blue-400 border-none rounded-full"
+              className="hover:text-pink-600 transition duration-300 btn btn-sm bg-[#263453] border-none rounded-full"
             >
               <FaTiktok />
             </a>
@@ -106,7 +106,7 @@ const Footer = () => {
           <div className="my-6">
             <div className="join">
               <input
-                className="input bg-[#1F2937] input-bordered join-item"
+                className="input bg-[#263453]  join-item"
                 placeholder="Email"
               />
               <button className="btn join-item bg-[#151F30] rounded-r-full border-0 text-white text-xl">
